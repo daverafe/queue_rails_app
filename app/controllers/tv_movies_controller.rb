@@ -21,4 +21,10 @@ class TvMoviesController < ApplicationController
         @tv_movie = TvMovie.find_by_id(params[:id])
     end
 
+    private
+    
+    def tv_movie_params 
+        params.require(:tv_movie).permit(:title)
+    end
+
 end

@@ -1,5 +1,5 @@
 <p>Search For Movies and Tv Shows</p>
-<%= form_with url: recommendations_path do |f| %>
+<%= form_with url: recommendations_path, method: :get do |f| %>
     <%= f.text_field :query %>
     <%= f.submit "Search" %>
 <% end %>

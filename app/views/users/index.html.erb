@@ -1,5 +1,5 @@
 <p>Search For Users</p>
-<%= form_with url: users_path do |f| %>
+<%= form_with url: users_path, method: :get do |f| %>
     <%= f.text_field :query %>
     <%= f.submit "Search" %>
 <% end %>
@@ -9,3 +9,4 @@
    <li><%= link_to user.username, user_path(user) %></li>
 <% end %>
 </ul>
+

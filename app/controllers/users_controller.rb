@@ -2,8 +2,7 @@ class UsersController < ApplicationController
     
     def index
         if params[:query] 
-            @users_search = TvMovie.search(params[:query])
-            @users = User.all
+            @users = User.search(params[:query])
           else
             @users = User.all
         end

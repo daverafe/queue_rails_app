@@ -1,7 +1,11 @@
 class TvMoviesController < ApplicationController
 
     def index
-        @tv_movies = TvMovie.all 
+        if params[:query] 
+            @tv_movies = TvMovie.search(params[:query])
+          else
+            @tv_movies = TvMovie.all
+        end
     end
     
     def new
@@ -24,7 +28,7 @@ class TvMoviesController < ApplicationController
     private
     
     def tv_movie_params 
-        params.require(:tv_movie).permit(:title)
+        params.require(:tv_movie).permit(:title, :content_type)
     end
 
 end

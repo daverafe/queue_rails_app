@@ -10,12 +10,6 @@ class RecommendationsController < ApplicationController
     end
 
     def new
-        if params[:query] 
-            @tv_movie = TvMovie.search(params[:query])
-            @recommendation = Recommendation.new 
-        else
-            @recommendation = Recommendation.new 
-        end
     end
 
     def create
@@ -24,7 +18,7 @@ class RecommendationsController < ApplicationController
         if recommendation.save 
             redirect_to user_recommendation_path(user)
         else
-            render :new 
+            render 'tv_movies/show' 
         end
     end
 

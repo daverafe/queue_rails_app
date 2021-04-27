@@ -9,7 +9,7 @@ class TvMoviesController < ApplicationController
     end
     
     def new
-        @tv_movie = TvMovie.new  
+        @tv_movie = TvMovie.new 
     end
 
     def create

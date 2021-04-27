@@ -1,0 +1,5 @@
+<p>Search For Movies and Tv Shows</p>
+<%= form_with url: user_recommendations_path do |f| %>
+    <%= f.text_field :query %>
+    <%= f.submit "Search" %>
+<% end %>

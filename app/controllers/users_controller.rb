@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
     
     def index
-        @users = User.all
+        if params[:query] 
+            @users_search = TvMovie.search(params[:query])
+            @users = User.all
+          else
+            @users = User.all
+        end
     end
 
     def new 

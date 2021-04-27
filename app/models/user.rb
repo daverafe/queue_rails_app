@@ -6,4 +6,7 @@ class User < ApplicationRecord
   validates :username, :email, presence: true
   validates :username, :email, uniqueness: {case_sensitive: false}
  
+  def self.search(query) 
+    self.where("username LIKE ?", "%#{query}%")
+  end
 end

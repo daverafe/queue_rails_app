@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy'
   resources :tv_movies
   resources :users do 
-    resources :recommendations
+    resources :recommendations, only: [:index, :show]
   end
   resources :recommendations
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

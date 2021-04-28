@@ -1,11 +1,14 @@
+<br>
+<br>
+
 <%= @user.username %>
 
-<p><%= link_to "Make a recommendation", tv_movies_path %> </p>
+<p><%= link_to "Make a recommendation", tv_movies_path %></p>
 
 
 <p>Recommendations</p>
 <% @user.recommendations.each do |rec| %>
-    <%= rec.title %>
+    <%= rec.tv_movie.title %>
 <% end %>
 
 

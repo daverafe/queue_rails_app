@@ -3,3 +3,12 @@
 <p><%= @tv_movie.content_type %></p>
 
 <p><%= button_to "Add To User Recommendations", recommendations_path %></p>
+
+<p><%=link_to "All Movies and TV Shows", tv_movies_path %></p>
+
+
+
+
+# <%= form_with model: @recommendation do |f| %>
+#     <%= f.submit "Add To User Recommendation" %>
+# <% end %>

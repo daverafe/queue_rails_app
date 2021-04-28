@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_27_204920) do
+ActiveRecord::Schema.define(version: 2021_04_28_224236) do
+
+  create_table "medias", force: :cascade do |t|
+    t.string "title"
+    t.string "media_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "recommendations", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "tv_movie_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "title"
-  end
-
-  create_table "tv_movies", force: :cascade do |t|
-    t.string "title"
-    t.string "content_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "rating"
+    t.integer "media_id"
   end
 
   create_table "users", force: :cascade do |t|

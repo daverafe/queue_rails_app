@@ -2,23 +2,24 @@ class RecommendationsController < ApplicationController
 
     def index
         if params[:user_id]
-            user = User.find_by_id(params[:user_id])
-            @recommendations = user.recommendations
+            @user = User.find_by_id(params[:user_id])
+            @recommendations = @user.made_recommendations
         else
             @recommendations = Recommendations.all 
         end
     end
 
     def new
+        @recommendation = Recommendation.new 
     end
 
     def create
-        user = User.find_by_id(session[:user_id])
-        recommendation = user.recommendations.build(recommendation_params)
+        user = User.find_by_id(params[:user_id])
+        recommendation = user.recevied_recommendations.build(recommendation_params)
         if recommendation.save 
-            redirect_to user_recommendation_path(user)
+            redirect_to user_recommendation_path(user, recommendation)
         else
-            render 'tv_movies/show' 
+            render :new  
         end
     end
 

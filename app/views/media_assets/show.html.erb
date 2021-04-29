@@ -2,13 +2,11 @@
 
 <p><%= @media_asset.media_type %></p>
 
-<p><%= button_to "Add To User Recommendations", recommendations_path %></p>
+<p><%=link_to "Add To User Recommendations", new_user_recommendation_path %></p>
+
 
 <p><%=link_to "All Movies and TV Shows", media_assets_path %></p>
 
 
 
 
-# <%= form_with model: @recommendation do |f| %>
-#     <%= f.submit "Add To User Recommendation" %>
-# <% end %>

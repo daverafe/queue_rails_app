@@ -1,0 +1,5 @@
+<%= form_with model: @recommendation do |f| %>
+    <%= f.label :rating %>
+    <%= f.number_field :rating %>
+    <%= f.submit "Add To User Recommendation" %>
+<% end %>

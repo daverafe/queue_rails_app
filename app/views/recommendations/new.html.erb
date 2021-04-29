@@ -1,3 +1,15 @@
+<p>Search For Movies and Tv Shows</p>
+<%= form_with model: @media_asset, method: :get do |f| %>
+    <%= f.text_field :query %>
+    <%= f.submit "Search" %>
+<% end %>
+
+<ul>
+<% @media_assets.each do |media_asset| %>
+   <li><%= link_to media_asset.title, media_asset_path(media_asset) %> - <%= media_asset.media_type %></li>
+<% end %>
+</ul>
+
 <%= form_with model: @recommendation do |f| %>
     <%= f.label :rating %>
     <%= f.number_field :rating %>

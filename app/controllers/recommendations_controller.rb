@@ -10,12 +10,13 @@ class RecommendationsController < ApplicationController
     end
 
     def new
-        @recommendation = Recommendation.new 
+        @recommendation = Recommendation.new(user_id: params[:user_id])
+        @media_assets = MediaAsset.search(params[:query])
     end
 
     def create
         user = User.find_by_id(params[:user_id])
-        recommendation = user.recevied_recommendations.build(recommendation_params)
+        recommendation = Recommendation.new(recommendation_params)
         if recommendation.save 
             redirect_to user_recommendation_path(user, recommendation)
         else
@@ -57,7 +58,7 @@ class RecommendationsController < ApplicationController
     private
 
     def recommendation_params
-        params.require(:recommendation).permit(:rating)
+        params.require(:recommendation).permit(:rating, :user_id)
     end
 end
 

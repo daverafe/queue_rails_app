@@ -32,12 +32,7 @@ class RecommendationsController < ApplicationController
     end
 
     def edit
-        if params[:query] 
-            @tv_movie = TvMovie.search(params[:query])
-            @recommendation = Recommendation.new 
-        else
             @recommendation = Recommendation.find_by_id(params[:id]) 
-        end
     end
 
     def update
@@ -61,6 +56,11 @@ class RecommendationsController < ApplicationController
     private
 
     def recommendation_params
-        params.require(:recommendation).permit(:title)
+        params.require(:recommendation).permit(:rating)
     end
 end
+
+
+
+
+

@@ -3,15 +3,19 @@
 
 <%= @user.username %>
 
-<p><%= link_to "Make a recommendation", medias_path %></p>
+<p><%= link_to "Make a recommendation", media_assets_path %></p>
 
 
 <p>Recommendations</p>
 <% @user.recommendations.each do |rec| %>
-    <%= rec.media.title %>
+    <%= rec.media_asset.title %>
 <% end %>
 
 
 <p><%=link_to "All Users", users_path %></p>
 
 <p><%=button_to "Logout", '/logout' %></p>
+
+
+
+

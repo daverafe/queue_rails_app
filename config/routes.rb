@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
-  resources :tv_movies
   resources :users do 
-    resources :recommendations, only: [:index, :show]
+    resources :recommendations
   end
+  resources :media_assets
   resources :recommendations
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

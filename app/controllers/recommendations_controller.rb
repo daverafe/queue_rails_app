@@ -3,7 +3,7 @@ class RecommendationsController < ApplicationController
     def index
         if params[:user_id]
             @user = User.find_by_id(params[:user_id])
-            @recommendations = @user.recevied_recommendations
+            @recommendations = @user.received_recommendations
         else
             @user = User.find_by_id(session[:user_id])
             @recommendations = @user.made_recommendations
@@ -13,7 +13,7 @@ class RecommendationsController < ApplicationController
     def new
         if params[:user_id]
             @user = User.find_by_id(params[:user_id])
-            @recommendation = @user.recevied_recommendations.build 
+            @recommendation = @user.received_recommendations.build 
         else
             @recommendation = Recommendation.new 
         end
@@ -22,7 +22,8 @@ class RecommendationsController < ApplicationController
     def create
         if params[:user_id]
             @user = User.find_by_id(params[:user_id])
-            @recommendation = @user.recevied_recommendations.build(recommendation_params)
+            @recommendation = @user.received_recommendations.build(recommendation_params)
+            @recommendation.recommendation_maker = User.find_by_id(session[:user_id])
             if @recommendation.save 
                 redirect_to user_recommendations_path(@user)
             else
@@ -41,14 +42,14 @@ class RecommendationsController < ApplicationController
     def show
         if params[:user_id]
             user = User.find_by_id(params[:user_id])
-            @recommendation = user.recevied_recommendations.find_by_id(params[:id])
+            @recommendation = user.received_recommendations.find_by_id(params[:id])
         else
             @recommendation = Recommendations.find_by_id(params[:id]) 
         end
     end
 
     def edit
-            @recommendation = Recommendation.find_by_id(params[:id]) 
+        @recommendation = Recommendation.find_by_id(params[:id]) 
     end
 
     def update
@@ -72,7 +73,7 @@ class RecommendationsController < ApplicationController
     private
 
     def recommendation_params
-        params.require(:recommendation).permit(:rating, :user_id, :media_asset_id, media_asset_attributes:[:title, :media_type])
+        params.require(:recommendation).permit(:rating, :recommendation_maker_id, :recommendation_receiver_id, :media_asset_id, media_asset_attributes:[:title, :media_type])
     end
 end
 

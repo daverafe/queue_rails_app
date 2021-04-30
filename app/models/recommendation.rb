@@ -1,6 +1,6 @@
 class Recommendation < ApplicationRecord
-    belongs_to :recommendation_maker, :class_name => "User"
-    belongs_to :recommendation_receiver, :class_name => "User"
+    belongs_to :recommendation_maker, class_name: "User"
+    belongs_to :recommendation_receiver, class_name: "User"
     belongs_to :media_asset  
     accepts_nested_attributes_for :media_asset 
 

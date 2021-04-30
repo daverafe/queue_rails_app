@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_29_201855) do
+ActiveRecord::Schema.define(version: 2021_04_30_215838) do
 
   create_table "media_assets", force: :cascade do |t|
     t.string "title"
@@ -20,11 +20,14 @@ ActiveRecord::Schema.define(version: 2021_04_29_201855) do
   end
 
   create_table "recommendations", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "media_asset_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "rating"
+    t.integer "recommendation_maker_id"
+    t.integer "recommendation_receiver_id"
+    t.index ["recommendation_maker_id"], name: "index_recommendations_on_recommendation_maker_id"
+    t.index ["recommendation_receiver_id"], name: "index_recommendations_on_recommendation_receiver_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,4 +38,6 @@ ActiveRecord::Schema.define(version: 2021_04_29_201855) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "recommendations", "users", column: "recommendation_maker_id"
+  add_foreign_key "recommendations", "users", column: "recommendation_receiver_id"
 end

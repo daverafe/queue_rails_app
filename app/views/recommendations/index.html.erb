@@ -1,3 +1,4 @@
 <% @recommendations.each do |recommendation| %>
     <%= recommendation.media_asset.title %> - <%= recommendation.recommendation_maker.username %>
+    <%= button_to "delete", recommendation, :method => :delete %>
 <% end %>

@@ -3,13 +3,16 @@
 
 <%= @user.username %>
 
-<p><%= link_to "Make a recommendation", new_user_recommendation_path(@user) %></p>
+<% if !current_user %>
+    <p><%= link_to "Make a recommendation", new_user_recommendation_path(@user) %></p>
+<% end %>
 
 
 <p>Recommendations</p>
 <% @user.received_recommendations.each do |recommendation| %>
     <%= recommendation.media_asset.title %> - Rating: <%= recommendation.rating %>
     Recommended By: <%= recommendation.recommendation_maker.username %>
+    <%= button_to "delete", recommendation, :method => :delete %>
 <% end %>
 
 

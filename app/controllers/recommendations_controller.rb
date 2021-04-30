@@ -56,7 +56,7 @@ class RecommendationsController < ApplicationController
         user = User.find_by_id(params[:user_id])
         recommendation = Recommendation.find_by_id(params[:id])
         if recommendation.update(recommendation_params)
-            redirect_to user_recommendation_path(user) 
+            redirect_to user_recommendations_path(user)
         else
             render :edit
         end

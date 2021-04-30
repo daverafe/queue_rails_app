@@ -1,17 +1,22 @@
-<p>Search For Movies and Tv Shows</p>
-<%= form_with model: @media_asset, method: :get do |f| %>
-    <%= f.text_field :query %>
-    <%= f.submit "Search" %>
-<% end %>
+<p>Make A Recommendation</p>
 
-<ul>
-<% @media_assets.each do |media_asset| %>
-   <li><%= link_to media_asset.title, media_asset_path(media_asset) %> - <%= media_asset.media_type %></li>
-<% end %>
-</ul>
+<%= form_with model: [@user, @recommendation] do |f| %>
+    <p>Select A Movie Or TV Show</p>
+    <%= f.collection_select :media_asset_id, MediaAsset.all, :id, :title %>
 
-<%= form_with model: @recommendation do |f| %>
+    <br>
+    <p>Create A New Movie Or TV Show</p>
+    <%= f.fields_for :media_asset, @recommendation.build_media_asset do |media_asset_fields| %>
+      <%= media_asset_fields.text_field :title %>
+      <%= media_asset_fields.select :media_type, ["Movie", "Tv Show"], include_blank: true %>
+    <% end %>
+    
+    <br>
+    <p>Rate Your Recommendation</p>
     <%= f.label :rating %>
     <%= f.number_field :rating %>
-    <%= f.submit "Add To User Recommendation" %>
+    
+    <%= f.submit "Add To Recommendations List" %>
 <% end %>
+
+

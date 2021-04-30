@@ -3,31 +3,45 @@ class RecommendationsController < ApplicationController
     def index
         if params[:user_id]
             @user = User.find_by_id(params[:user_id])
-            @recommendations = @user.made_recommendations
+            @recommendations = @user.recevied_recommendations
         else
-            @recommendations = Recommendations.all 
+            @user = User.find_by_id(session[:user_id])
+            @recommendations = @user.made_recommendations
         end
     end
 
     def new
-        @recommendation = Recommendation.new(user_id: params[:user_id])
-        @media_assets = MediaAsset.search(params[:query])
+        if params[:user_id]
+            @user = User.find_by_id(params[:user_id])
+            @recommendation = @user.recevied_recommendations.build 
+        else
+            @recommendation = Recommendation.new 
+        end
     end
 
     def create
-        user = User.find_by_id(params[:user_id])
-        recommendation = Recommendation.new(recommendation_params)
-        if recommendation.save 
-            redirect_to user_recommendation_path(user, recommendation)
+        if params[:user_id]
+            @user = User.find_by_id(params[:user_id])
+            @recommendation = @user.recevied_recommendations.build(recommendation_params)
+            if @recommendation.save 
+                redirect_to user_recommendations_path(@user)
+            else
+                render :new 
+            end
         else
-            render :new  
+            @recommendation = Recommendation.new(recommendation_params)
+            if @recommendation.save 
+                redirect_to recommendations_path
+            else
+                render :new 
+            end
         end
     end
 
     def show
         if params[:user_id]
             user = User.find_by_id(params[:user_id])
-            @recommendation = user.recommendations.find_by_id(params[:id])
+            @recommendation = user.recevied_recommendations.find_by_id(params[:id])
         else
             @recommendation = Recommendations.find_by_id(params[:id]) 
         end
@@ -38,7 +52,7 @@ class RecommendationsController < ApplicationController
     end
 
     def update
-        user = User.find_by_id(session[:user_id])
+        user = User.find_by_id(params[:user_id])
         recommendation = Recommendation.find_by_id(params[:id])
         if recommendation.update(recommendation_params)
             redirect_to user_recommendation_path(user) 
@@ -58,7 +72,7 @@ class RecommendationsController < ApplicationController
     private
 
     def recommendation_params
-        params.require(:recommendation).permit(:rating, :user_id)
+        params.require(:recommendation).permit(:rating, :user_id, :media_asset_id, media_asset_attributes:[:title, :media_type])
     end
 end
 

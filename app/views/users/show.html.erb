@@ -7,8 +7,9 @@
 
 
 <p>Recommendations</p>
-<% @user.recevied_recommendations.each do |rec| %>
-    <%= rec.media_asset.title %>
+<% @user.recevied_recommendations.each do |recomendation| %>
+    <%= recommendation.media_asset.title %> - Rating: <%= recommendation.rating %>
+    Recommended By: <%= recommendation.recommendation_maker.username %>
 <% end %>
 
 

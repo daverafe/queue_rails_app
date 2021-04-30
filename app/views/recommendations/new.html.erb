@@ -2,7 +2,7 @@
 
 <%= form_with model: [@user, @recommendation] do |f| %>
     <p>Select A Movie Or TV Show</p>
-    <%= f.collection_select :media_asset_id, MediaAsset.all, :id, :title %>
+    <%= f.collection_select :media_asset_id, MediaAsset.all, :id, :title, include_blank: true %>
 
     <br>
     <p>Create A New Movie Or TV Show</p>

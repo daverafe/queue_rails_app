@@ -3,6 +3,8 @@
 <p><%= @media_asset.media_type %></p>
 
 
+<p><%=link_to "Edit", edit_media_asset_path(@media_asset) %></p>
+<%= button_to "delete", @media_asset, :method => :delete %>
 
 <p><%=link_to "All Movies and TV Shows", media_assets_path %></p>
 

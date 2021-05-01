@@ -23,6 +23,25 @@ class MediaAssetsController < ApplicationController
     def show
         @media_asset = MediaAsset.find_by_id(params[:id])
     end
+
+    def edit
+        @media_asset = MediaAsset.find_by_id(params[:id])
+    end
+
+    def update
+        @media_asset = MediaAsset.find_by_id(params[:id])
+        if @media_asset.update(media_asset_params)
+            redirect_to media_asset_path(@media_asset) 
+        else
+            render :edit 
+        end
+    end
+
+    def destroy
+        @media_asset = MediaAsset.find_by_id(params[:id])
+        @media_asset.destroy 
+        redirect_to media_assets_path 
+    end
     
     private
     

@@ -15,11 +15,13 @@ class RecommendationsController < ApplicationController
             @user = User.find_by_id(params[:user_id])
             @recommendation = @user.received_recommendations.build 
         else
-            @recommendation = Recommendation.new 
+            @user = current_user 
+            redirect_to user_path(@user)
         end
     end
 
     def create
+        byebug
         if params[:user_id]
             @user = User.find_by_id(params[:user_id])
             @recommendation = @user.received_recommendations.build(recommendation_params)
@@ -30,12 +32,8 @@ class RecommendationsController < ApplicationController
                 render :new 
             end
         else
-            @recommendation = Recommendation.new(recommendation_params)
-            if @recommendation.save 
-                redirect_to recommendations_path
-            else
-                render :new 
-            end
+            @user = current_user 
+            redirect_to user_path(@user)        
         end
     end
 
@@ -44,12 +42,12 @@ class RecommendationsController < ApplicationController
             user = User.find_by_id(params[:user_id])
             @recommendation = user.received_recommendations.find_by_id(params[:id])
         else
-            @recommendation = Recommendations.find_by_id(params[:id]) 
+            @recommendation = Recommendation.find_by_id(params[:id]) 
         end
     end
 
     def edit
-        @recommendation = Recommendation.find_by_id(params[:id]) 
+        @recommendation = Recommendation.recommendation_receiver.find_by_id(params[:id]) 
     end
 
     def update
@@ -63,7 +61,11 @@ class RecommendationsController < ApplicationController
     end
 
     def destroy
-        user = User.find_by_id(session[:user_id])
+        if params[:user_id]
+            user = User.find_by_id(params[:user_id])
+        else
+            user = User.find_by_id(session[:user_id])
+        end
         @recommendation = Recommendation.find_by_id(params[:id]) 
         @recommendation.destroy 
         redirect_to user_path(user)

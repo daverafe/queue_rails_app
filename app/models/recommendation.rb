@@ -10,6 +10,10 @@ class Recommendation < ApplicationRecord
           self.media_asset = media_asset
         end
     end 
+
+    def self.most_recent
+      self.order(created_at: :desc)
+    end
 end
 
 

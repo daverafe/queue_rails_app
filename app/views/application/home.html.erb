@@ -1,4 +1,11 @@
-<h1>Welcome to Queue!</h1>
+<h1>Most Recent Recommendations</h1>
+
+<ul>
+<% @recommendations.each do |recommendation| %>
+   <li> <%= link_to recommendation.media_asset.title, media_asset_path(recommendation.media_asset) %> 
+    was recommended to <%= link_to recommendation.recommendation_receiver.username, user_path(recommendation.recommendation_receiver) %>
+    by <%= link_to recommendation.recommendation_maker.username, user_path(recommendation.recommendation_maker) %> </li>
+<% end %>
+</ul>
 
 
-<%= link_to "Sign Up", new_user_path %> | <%= link_to "Login", login_path %>

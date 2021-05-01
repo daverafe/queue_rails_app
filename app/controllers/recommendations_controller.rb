@@ -21,7 +21,6 @@ class RecommendationsController < ApplicationController
     end
 
     def create
-        byebug
         if params[:user_id]
             @user = User.find_by_id(params[:user_id])
             @recommendation = @user.received_recommendations.build(recommendation_params)

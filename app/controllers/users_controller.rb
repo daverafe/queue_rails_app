@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     before_action :set_user, except: [:index, :new, :create]
+    skip_before_action :authenticate_user, only: [:new, :create]
     
     def index
         if params[:query] 
@@ -10,7 +11,11 @@ class UsersController < ApplicationController
     end
 
     def new 
-        @user = User.new
+        if logged_in?
+            redirect_to home_path
+        else
+            @user = User.new
+        end
     end
 
     def create 

@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
+  skip_before_action :authenticate_user, except: [:destroy]
+  
   def new
-    
+    if logged_in?
+      redirect_to home_path
+    end
   end
 
   def create

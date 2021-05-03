@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :set_user, except: [:index, :new, :create]
     
     def index
         if params[:query] 
@@ -23,15 +24,12 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find_by_id(params[:id])
     end
 
     def edit 
-        @user = User.find_by_id(params[:id])
     end
 
     def update
-        @user = User.find_by_id(params[:id])
         if @user.update(user_params)
             redirect_to user_path(@user)
         else
@@ -41,7 +39,6 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        @user = User.find_by_id(params[:id]) 
         @user.destroy 
         redirect_to root_path
     end
@@ -52,7 +49,7 @@ class UsersController < ApplicationController
         params.require(:user).permit(:username, :email, :password)
     end
 
-    # def set_user
-    #     @user = User.find_by_id(params[:id])
-    # end
+    def set_user
+        @user = User.find_by_id(params[:id])
+    end
 end

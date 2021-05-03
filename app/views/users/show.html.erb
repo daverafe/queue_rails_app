@@ -3,7 +3,7 @@
 
 <%= @user.username %>
 
-<% if current_user %>
+<% if !current_user %>
     <p><%= link_to "Make a recommendation", new_user_recommendation_path(@user) %></p>
 <% end %>
 

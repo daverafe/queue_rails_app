@@ -23,7 +23,8 @@ class RecommendationsController < ApplicationController
     def create
         if params[:user_id]
             @user = User.find_by_id(params[:user_id])
-            @recommendation = @user.received_recommendations.build(recommendation_params)
+            @recommendation = Recommendation.new(recommendation_params)
+            @recommendation.recommendation_receiver = @user 
             @recommendation.recommendation_maker = User.find_by_id(session[:user_id])
             if @recommendation.save 
                 redirect_to user_recommendations_path(@user)

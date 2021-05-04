@@ -3,3 +3,5 @@
 <%= render partial: 'errors', locals: {model: @user} %>
 
 <%= render partial: 'form' %>
+
+<%= button_to "delete account", @user, :method => :delete %>

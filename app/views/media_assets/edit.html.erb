@@ -1,3 +1,5 @@
 <p>Edit A Movie Or Tv Show</p>
 
-<%= render 'form' %>
+<%= render partial: 'users/errors', locals: {model: @media_asset} %>
+
+<%= render partial: 'form' %>

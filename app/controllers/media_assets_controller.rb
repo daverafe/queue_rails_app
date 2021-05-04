@@ -14,9 +14,9 @@ class MediaAssetsController < ApplicationController
     end
     
     def create
-        media_asset = MediaAsset.new(media_asset_params)
-        if media_asset.save
-            redirect_to media_asset_path(media_asset)
+        @media_asset = MediaAsset.new(media_asset_params)
+        if @media_asset.save
+            redirect_to media_asset_path(@media_asset)
         else
             render :new 
         end

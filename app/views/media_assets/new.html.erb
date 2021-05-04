@@ -1,4 +1,5 @@
 <p>Create A New Movie Or Tv Show</p>
 
+<%= render partial: 'users/errors', locals: {model: @media_asset} %>
 
-<%= render 'form' %>
+<%= render partial: 'form' %>

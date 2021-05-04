@@ -11,10 +11,12 @@
   </head>
 
   <body>
+  <% if current_user %>
     <br>
     <%= link_to "Home", home_path %> | <%= link_to "Search Users", users_path %> | <%= link_to "Search Movies and TV", media_assets_path %> 
     | <%= link_to "Profile Page", user_path(current_user) %> | <%= link_to "Recommendations Made", recommendations_path %>
     <br>
+  <% end %>
     <%= yield %>
   </body>
 </html>

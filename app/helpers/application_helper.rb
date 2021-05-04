@@ -6,4 +6,8 @@ module ApplicationHelper
     def logged_in?
         current_user
     end
+
+    def check_user?
+        current_user == User.find_by_id(params[:id])
+    end
 end

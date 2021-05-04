@@ -3,7 +3,7 @@
 
 <%= @user.username %>
 
-<% if !current_user %>
+<% if !check_user? %>
     <p><%= link_to "Make a recommendation", new_user_recommendation_path(@user) %></p>
 <% end %>
 
@@ -18,7 +18,7 @@
 
 <p><%=link_to "All Users", users_path %></p>
 
-<% if current_user %>
+<% if check_user? %>
     <p><%=button_to "Logout", '/logout' %></p>
 <% end %>
 

@@ -1,4 +1,5 @@
+<ul>
 <% @recommendations.each do |recommendation| %>
-    <%= recommendation.media_asset.title %> - <%= recommendation.recommendation_maker.username %>
-    <%= button_to "delete", recommendation, :method => :delete %>
+   <li> <%= link_to recommendation.media_asset.title, media_asset_path(recommendation.media_asset) %> - <%= link_to recommendation.recommendation_receiver.username, user_path(recommendation.recommendation_receiver) %> </li>
 <% end %>
+</ul>

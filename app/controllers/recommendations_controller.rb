@@ -1,5 +1,5 @@
 class RecommendationsController < ApplicationController
-    before_action :set_recommendation_receiver, except: [:edit]
+    before_action :set_recommendation_receiver, except: [:destroy]
     
     def index
         if params[:user_id]
@@ -44,7 +44,12 @@ class RecommendationsController < ApplicationController
     end
 
     def edit
-        @recommendation = Recommendation.recommendation_receiver.find_by_id(params[:id]) 
+        if params[:user_id]
+            @recommendation = @user.received_recommendations.find_by_id(params[:id])
+        else
+            @user = current_user 
+            redirect_to user_path(@user)
+        end    
     end
 
     def update
@@ -59,7 +64,7 @@ class RecommendationsController < ApplicationController
     def destroy
         @recommendation = Recommendation.find_by_id(params[:id]) 
         @recommendation.destroy 
-        redirect_to user_path(@user)
+        redirect_to home_path
     end
 
 

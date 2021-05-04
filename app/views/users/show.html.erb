@@ -1,22 +1,23 @@
 <br>
 <br>
 
-<%= @user.username %>
+<h2><%= @user.username %>'s profile page</h2>
 
 <% if !check_user? %>
     <p><%= link_to "Make a recommendation", new_user_recommendation_path(@user) %></p>
 <% end %>
 
 
-<p>Recommendations</p>
+<h3>Recommendations</h3>
+<hr>
 <% @user.received_recommendations.each do |recommendation| %>
-    <%= recommendation.media_asset.title %> - Rating: <%= recommendation.rating %>
-    Recommended By: <%= recommendation.recommendation_maker.username %>
+   <p> <%= recommendation.media_asset.title %> - Rating: <%= recommendation.rating %> </p>
+   <p> Recommended By: <%= recommendation.recommendation_maker.username %> </p>
     <%= button_to "delete", recommendation, :method => :delete %>
+    <hr>
 <% end %>
 
 
-<p><%=link_to "All Users", users_path %></p>
 
 <% if check_user? %>
     <p><%=button_to "Logout", '/logout' %></p>

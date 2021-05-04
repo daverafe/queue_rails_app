@@ -5,6 +5,7 @@
    <li> <%= link_to recommendation.media_asset.title, media_asset_path(recommendation.media_asset) %> 
     was recommended to <%= link_to recommendation.recommendation_receiver.username, user_path(recommendation.recommendation_receiver) %>
     by <%= link_to recommendation.recommendation_maker.username, user_path(recommendation.recommendation_maker) %> </li>
+    <hr>
 <% end %>
 </ul>
 

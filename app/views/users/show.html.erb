@@ -11,9 +11,11 @@
 <h3>Recommendations</h3>
 <hr>
 <% @user.received_recommendations.each do |recommendation| %>
-   <p> <%= recommendation.media_asset.title %> - Rating: <%= recommendation.rating %> </p>
-   <p> Recommended By: <%= recommendation.recommendation_maker.username %> </p>
-    <%= button_to "delete", recommendation, :method => :delete %>
+   <p> <%= render partial: 'recommendations/recommendation_media', locals: {recommendation: recommendation} %> - Rating: <%= recommendation.rating %> </p>
+   <p> Recommended By: <%= render partial: 'recommendations/recommendation_maker', locals: {recommendation: recommendation}  %> </p>
+   <% if check_user? %>
+        <%= button_to "delete", recommendation, :method => :delete %>
+   <% end %>
     <hr>
 <% end %>
 

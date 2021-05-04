@@ -1,5 +1,5 @@
 <ul>
 <% @recommendations.each do |recommendation| %>
-   <li> <%= link_to recommendation.media_asset.title, media_asset_path(recommendation.media_asset) %> - <%= link_to recommendation.recommendation_receiver.username, user_path(recommendation.recommendation_receiver) %> </li>
+   <li> <%= render partial: 'recommendations/recommendation_media', locals: {recommendation: recommendation}  %> - <%= render partial: 'recommendations/recommendation_receiver', locals: {recommendation: recommendation}  %> </li>
 <% end %>
 </ul>

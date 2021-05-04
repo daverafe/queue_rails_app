@@ -1,12 +1,3 @@
 <p>Edit A Movie Or Tv Show</p>
 
-
-<%= form_with model: @media_asset do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-
-    <%= f.label :media_type %>
-    <%= f.select :media_type, ["Movie", "Tv Show"] %>
-
-    <%= f.submit "Edit Movie Or TV Show" %>
-<% end %>
+<%= render 'form' %>

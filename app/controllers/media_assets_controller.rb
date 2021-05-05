@@ -36,10 +36,6 @@ class MediaAssetsController < ApplicationController
         end
     end
 
-    def destroy
-        @media_asset.destroy 
-        redirect_to media_assets_path 
-    end
     
     private
     

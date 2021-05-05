@@ -8,7 +8,7 @@ class Recommendation < ApplicationRecord
 
 
     def self.most_recent
-      self.order(created_at: :desc)
+      self.order(created_at: :desc).includes(:media_asset, :recommendation_maker, :recommendation_receiver)
     end
 end
 

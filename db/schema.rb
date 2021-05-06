@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_01_211122) do
+ActiveRecord::Schema.define(version: 2021_05_06_201240) do
 
   create_table "media_assets", force: :cascade do |t|
     t.string "title"
@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(version: 2021_05_01_211122) do
 
   create_table "recommendations", force: :cascade do |t|
     t.integer "media_asset_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "rating"
     t.integer "recommendation_maker_id"
     t.integer "recommendation_receiver_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["recommendation_maker_id"], name: "index_recommendations_on_recommendation_maker_id"
     t.index ["recommendation_receiver_id"], name: "index_recommendations_on_recommendation_receiver_id"
   end

@@ -35,32 +35,6 @@ class RecommendationsController < ApplicationController
         end
     end
 
-    def show
-        if params[:user_id]
-            @recommendation = @user.received_recommendations.find_by_id(params[:id])
-        else
-            @recommendation = Recommendation.find_by_id(params[:id]) 
-        end
-    end
-
-    def edit
-        if params[:user_id]
-            @recommendation = @user.received_recommendations.find_by_id(params[:id])
-        else
-            @user = current_user 
-            redirect_to user_path(@user)
-        end    
-    end
-
-    def update
-        recommendation = Recommendation.find_by_id(params[:id])
-        if recommendation.update(recommendation_params)
-            redirect_to user_recommendations_path(@user)
-        else
-            render :edit
-        end
-    end
-
     def destroy
         @recommendation = Recommendation.find_by_id(params[:id]) 
         @recommendation.destroy 

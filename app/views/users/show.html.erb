@@ -1,8 +1,8 @@
 <br>
-<br>
 
-<h2><%= @user.username %>'s profile page</h2>
-
+<div class="container">
+<h2><%= @user.username %>'s Profile Page</h2>
+<hr>
 <% if !check_user? %>
     <p><%= link_to "Make a recommendation", new_user_recommendation_path(@user) %></p>
 <% end %>
@@ -25,6 +25,7 @@
     <p><%=link_to "Edit Account", edit_user_path(@user) %></p>
     <p><%=button_to "Logout", '/logout' %></p>
 <% end %>
+</div>
 
 
 

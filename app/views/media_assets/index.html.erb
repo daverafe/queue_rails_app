@@ -1,4 +1,6 @@
+<div class="container">
 <p>Search For Movies and Tv Shows</p>
+<hr>
 <%= form_with model: @media_asset, method: :get do |f| %>
     <%= f.text_field :query %>
     <%= f.submit "Search" %>
@@ -14,3 +16,4 @@
    <li><%= link_to media_asset.title, media_asset_path(media_asset) %> - <%= media_asset.media_type %></li>
 <% end %>
 </ul>
+</div>

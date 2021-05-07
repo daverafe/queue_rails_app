@@ -1,5 +1,9 @@
+<div class="container">
+<p>Recommendations</p>
+<hr>
 <ul>
 <% @recommendations.each do |recommendation| %>
    <li> <%= render partial: 'recommendations/media', locals: {recommendation: recommendation}  %> - <%= render partial: 'recommendations/receiver', locals: {recommendation: recommendation}  %> </li>
 <% end %>
 </ul>
+</div>

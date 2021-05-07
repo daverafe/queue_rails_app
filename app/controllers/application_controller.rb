@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
         @recommendations = Recommendation.most_recent 
     end
 
+    private 
+    
     def authenticate_user 
         if !logged_in?
             redirect_to root_path

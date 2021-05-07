@@ -25,7 +25,7 @@ class RecommendationsController < ApplicationController
             @recommendation.recommendation_receiver = @user 
             @recommendation.recommendation_maker = User.find_by_id(session[:user_id])
             if @recommendation.save 
-                redirect_to user_recommendations_path(@user)
+                redirect_to user_path(@user)
             else
                 render :new 
             end

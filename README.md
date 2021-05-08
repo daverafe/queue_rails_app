@@ -14,7 +14,9 @@ rails s
 ```
 Open a browser tab and type: localhost:3000
 
-If you follow the above steps you should be on the sites landing page. 
+If you follow the above steps you should be on the sites landing page.
+
+*If you want to use the third party autherization that's available, you're going to have to get your own Client ID and Secret from google, and then put that into a .env file.*
 
 
 ## Developing
@@ -30,6 +32,8 @@ code .
 
 This is going to give you access to the repository, install any dependencies you need, and open the project in your VS code. 
 
+*If you want to use the third party autherization that's available, you're going to have to get your own Client ID and Secret from google, and then put that into a .env file.*
+
 
 ## Features
 
@@ -38,6 +42,7 @@ You can recommend TV shows or movies to any user who is signed up for the app.
 Users have a profile page where they can see recommendations other users have made for them. 
 You can also search through all of the TV shows and movies in the projects database, and create any new ones you want to add.
 There is also a custom landing page that has all the most recent recommendations between all users of the app. 
+You can also login with google as a third party account.(special instructions under installing/getting started)
 
 ## Contributing
 

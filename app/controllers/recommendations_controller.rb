@@ -5,8 +5,7 @@ class RecommendationsController < ApplicationController
         if params[:user_id]
             @recommendations = @user.received_recommendations
         else
-            @user = User.find_by_id(session[:user_id])
-            @recommendations = @user.made_recommendations
+            @recommendations = current_user.made_recommendations
         end
     end
 
@@ -14,8 +13,7 @@ class RecommendationsController < ApplicationController
         if params[:user_id]
             @recommendation = @user.received_recommendations.build 
         else
-            @user = current_user 
-            redirect_to user_path(@user)
+            redirect_to user_path(current_user)
         end
     end
 
@@ -23,22 +21,25 @@ class RecommendationsController < ApplicationController
         if params[:user_id]
             @recommendation = Recommendation.new(recommendation_params)
             @recommendation.recommendation_receiver = @user 
-            @recommendation.recommendation_maker = User.find_by_id(session[:user_id])
+            @recommendation.recommendation_maker = current_user
             if @recommendation.save 
                 redirect_to user_path(@user)
             else
                 render :new 
             end
         else
-            @user = current_user 
-            redirect_to user_path(@user)        
+            redirect_to user_path(current_user)        
         end
     end
 
     def destroy
-        @recommendation = Recommendation.find_by_id(params[:id]) 
-        @recommendation.destroy 
-        redirect_to user_path(current_user)
+        if check_user?
+            @recommendation = Recommendation.find_by_id(params[:id]) 
+            @recommendation.destroy 
+            redirect_to user_path(current_user)
+        else
+            redirect_to home_path
+        end
     end
 
 
@@ -51,6 +52,7 @@ class RecommendationsController < ApplicationController
     def set_recommendation_receiver
         @user = User.find_by_id(params[:user_id])
     end
+
 end
 
 

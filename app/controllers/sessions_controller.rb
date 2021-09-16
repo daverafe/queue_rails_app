@@ -23,9 +23,9 @@ class SessionsController < ApplicationController
   end
 
   def omniauth 
-    user = User.find_or_create_by(uid: request.env['omniauth.auth'][:uid], provider: request.env['omniauth.auth'][:provider]) do |u|
-      u.username = request.env['omniauth.auth'][:info][:name]
-      u.email = request.env['omniauth.auth'][:info][:email]
+    user = User.find_or_create_by(uid: auth[:uid], provider: auth[:provider]) do |u|
+      u.username = auth[:info][:name]
+      u.email = auth[:info][:email]
       u.password = SecureRandom.hex(15)
     end
     if user.valid?
@@ -35,4 +35,9 @@ class SessionsController < ApplicationController
       redirect_to login_path 
     end
   end
+  private
+  def auth 
+    request.env['omniauth.auth']
+  end
 end
+

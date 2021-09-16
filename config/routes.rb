@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :users do 
     resources :recommendations, only: [:index, :new, :create]
   end
-  resources :media_assets
+  resources :media_assets do
+    resources :recommendations, only:[:index]
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

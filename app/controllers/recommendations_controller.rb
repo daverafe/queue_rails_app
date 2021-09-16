@@ -7,6 +7,10 @@ class RecommendationsController < ApplicationController
         else
             @recommendations = current_user.made_recommendations
         end
+        if params[:media_asset_id]
+           @media_asset = MediaAsset.find_by_id(params[:media_asset_id])
+            @recommendations = @media_asset.recommendations 
+        end
     end
 
     def new

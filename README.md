@@ -1,5 +1,8 @@
 # README
 
+# Link to live site
+https://stormy-reaches-82175.herokuapp.com/
+
 # Queue Rails App
 This is an online media recommendation app. For now it's focused on TV shows and movies, but may expand to other media in the future. You can search for a user, then recommend a TV show or movie that they should watch. When that user logs in they will see the recommendation you've made for them.  
 

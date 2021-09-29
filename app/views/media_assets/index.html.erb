@@ -7,13 +7,13 @@
 <% end %>
 
 
-<p><%= link_to "Create A New Movie Or Tv Show", new_media_asset_path %></p>
+<p><%= link_to "Create A New Movie Or Tv Show", new_media_asset_path, :class => "link" %></p>
 
 
 
 <ul>
 <% @media_assets.each do |media_asset| %>
-   <li><%= link_to media_asset.title, media_asset_path(media_asset) %> - <%= media_asset.media_type %></li>
+   <li><%= link_to media_asset.title, media_asset_path(media_asset), :class => "link" %> - <%= media_asset.media_type %></li>
 <% end %>
 </ul>
 </div>

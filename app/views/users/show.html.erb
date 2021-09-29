@@ -22,7 +22,7 @@
 
 
 <% if check_user? %>
-    <p><%=link_to "Edit Account", edit_user_path(@user) %></p>
+    <p><%=link_to "Edit Account", edit_user_path(@user), :class => "link" %></p>
     <p><%=button_to "Logout", '/logout' %></p>
 <% end %>
 </div>

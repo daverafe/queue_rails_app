@@ -8,18 +8,27 @@
 
   .container {
     border: 1px solid black;
-    width: 50%;
+    width: 60%;
+    height: 400px;
     margin: auto;
+    margin-top: 40px;
+    padding-top: 60px;
     text-align: center;
-    background-color: #d7cef2;
+    background-color: #8451d6;
+    color: white;
   }
 
   body {
-    background-color: #adacb0;
+    background-color: #424242;
   }
 
   li {
     list-style-type: none;
+  }
+
+  .welcome-link {
+    font-size: 25px;
+    color: black;
   }
 
 

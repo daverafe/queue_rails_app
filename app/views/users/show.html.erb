@@ -4,7 +4,7 @@
 <h2><%= @user.username %>'s Profile Page</h2>
 <hr>
 <% if !check_user? %>
-    <p><%= link_to "Make a recommendation", new_user_recommendation_path(@user) %></p>
+    <p><%= link_to "Make a recommendation", new_user_recommendation_path(@user), :class => "link" %></p>
 <% end %>
 
 

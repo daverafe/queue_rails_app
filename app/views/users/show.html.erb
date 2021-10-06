@@ -14,7 +14,7 @@
    <p> <%= render partial: 'recommendations/media', locals: {recommendation: recommendation} %> - Rating: <%= recommendation.rating %> </p>
    <p> Recommended By: <%= render partial: 'recommendations/maker', locals: {recommendation: recommendation}  %> </p>
    <% if check_user? %>
-        <%= button_to "delete", recommendation, :method => :delete %>
+        <%= button_to "delete", recommendation, :method => :delete, :class => 'btn btn-light' %>
    <% end %>
     <hr>
 <% end %>
@@ -23,7 +23,7 @@
 
 <% if check_user? %>
     <p><%=link_to "Edit Account", edit_user_path(@user), :class => "link" %></p>
-    <p><%=button_to "Logout", '/logout' %></p>
+    <p><%=button_to "Logout", '/logout', :class => 'btn btn-light' %></p>
 <% end %>
 </div>
 

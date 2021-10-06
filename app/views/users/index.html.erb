@@ -3,7 +3,7 @@
 <hr>
 <%= form_with url: users_path, method: :get do |f| %>
     <%= f.text_field :query %>
-    <%= f.submit "Search" %>
+    <%= f.submit :Search, class: 'btn btn-light' %>
 <% end %>
 
 <ul>

@@ -32,6 +32,11 @@
     text-decoration: none;
   }
 
+  input {
+    display: block;
+    margin: 0 auto;
+  }
+
   @media (max-width: 500px){
     .container {
       border: 1px solid black;
